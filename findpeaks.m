@@ -39,7 +39,4 @@ function [pks locs] = findpeaks(data, height, dist)
 
     locs = find(idx);
     pks = data(locs);
-
-    size(pks)
-    size(locs)
 end
