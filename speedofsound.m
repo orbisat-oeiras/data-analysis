@@ -69,5 +69,5 @@ function [v n r2 var fhat] = speedofsound(f, L, tubetype)
 
     [coef, r2, var, ~, fhat] = ols(n, f);
     assert(size(coef), [1, 1]);
-    v = coef * L / k;
+    v = coef * L * k;
 endfunction
