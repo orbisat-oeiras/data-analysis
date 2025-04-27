@@ -18,6 +18,8 @@ function [pks locs] = findpeaks(data, height, dist)
     narginchk(3, 3);
     nargoutchk(1, 2);
 
+    dist = floor(dist);
+
     # find all peaks
     locs = regexp(char(sign(diff(reshape(data, 1, []))) + '1'), '21*0') + 1;
     # apply MinPeakHeight
