@@ -1,6 +1,6 @@
 ## -*- texinfo -*-
 ## @deftypefn {Function File} {[@var{coefs} @var{r2} @var{var} @var{yhat}] =} ols (@var{X}, @var{y}, @var{w})
-## Compute the Weightes Least Squares (WLS) regression
+## Compute the Weighted Least Squares (WLS) regression
 ## coefficients.
 ##
 ## @var{coefs} is the vector of regression coefficients,

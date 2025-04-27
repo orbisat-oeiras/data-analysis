@@ -11,7 +11,7 @@ function [v delta_v] = sweep(varargin)
     p.addParameter("peak_threshold", 1e-5, positive_real);
     positive_int = @(x) isinteger(x) && x > 0;
     p.addParameter("corr_peak", 2, positive_int);
-    vld_tube = @(x) any(strcmp(x, {"symmetric", "asymetric"}));
+    vld_tube = @(x) any(strcmp(x, {"symmetric", "asymmetric"}));
     p.addParameter("tube", "symmetric", vld_tube);
     p.addSwitch("disp");
     p.addSwitch("fig");
@@ -23,7 +23,7 @@ function [v delta_v] = sweep(varargin)
     switch (p.Results.tube)
         case 'symmetric'
             k = 2;
-        case 'asymetric'
+        case 'asymmetric'
             k = 4;
         otherwise
             error('sweep: tube must be either "symmetric" or "asymmetric".');

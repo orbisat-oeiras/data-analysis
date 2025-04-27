@@ -6,7 +6,7 @@ function [v delta_v] = whitenoise(varargin)
     p.addRequired("L", positive_real);
     p.addRequired("fname", @ischar);
     p.addOptional("peak_threshold", 1e-5, positive_real);
-    vld_tube = @(x) any(strcmp(x, {"symmetric", "asymetric"}));
+    vld_tube = @(x) any(strcmp(x, {"symmetric", "asymmetric"}));
     p.addParameter("tube", "symmetric", vld_tube);
     p.addSwitch("disp");
     p.addSwitch("fig");

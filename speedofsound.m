@@ -60,7 +60,7 @@ function [v n r2 var fhat] = speedofsound(f, L, tubetype)
         case 'symmetric'
             n = (1:size(f, 1))';
             k = 2;
-        case 'asymetric'
+        case 'asymmetric'
             n = 2 * (1:size(f, 1))' - 1;
             k = 4;
         otherwise
