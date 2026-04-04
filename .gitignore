@@ -1,2 +1,6 @@
 .vscode/
 .DS_Store
+scripts/octave-workspace
+scripts/audio
+scripts/segments
+scripts/python/data
