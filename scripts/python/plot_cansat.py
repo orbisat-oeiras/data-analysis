@@ -124,7 +124,6 @@ else:
 
         plt.show()
     else:
-        print("This is reached")
         v = mat_data['speeds'].flatten()
         timestamps = mat_data['timestamps'].flatten()
 
