@@ -46,3 +46,23 @@ The main script file to be used is [analyze_data.m](https://github.com/orbisat-o
 - `fig` - display the figure using GNU Octave.
 
 - `fig_py` - display the figure using Python.
+
+## Example Usage
+
+On the Octave shell, to analyze a series of audio files, with a tube of length L with bootcount 1, to graph the speed of sound in function of time with Python:
+
+```shell
+octave:1> analyze_data("series", L, "bootcount", "1", "fig_py")
+```
+
+to analyze a series of audio files, with a tube of length L, bootcount 1, and correlate the temperature from a .csv file with WLS, and display the data with Python:
+
+```shell
+octave:1> analyze_data("series", L, "bootcount", "1", "cansat_data", "CANSAT_FILE_PATH", "variable", "temperature", "regression_type", "wls", "fig_py")
+```
+
+get the resonance frequency of an audio file and display with Python:
+
+```shell
+analyze_data("single", "fname", "AUDIO_FILE", "fig_py")
+```
