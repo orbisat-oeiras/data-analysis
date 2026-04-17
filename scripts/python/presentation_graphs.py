@@ -35,29 +35,29 @@ if len(sys.argv) >= 5:
         plt.rcParams["font.family"] = "sans-serif"
         plt.rcParams["font.sans-serif"] = "Helvetica"
 
-        ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=14, fontweight='bold')
+        ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
         match x_axis:
             case "pressure":
-                ax.set_xlabel(f'Pressure (Pa)', fontsize=12)
+                ax.set_xlabel(f'Pressure (Pa)', fontsize=14)
             case "temperature":
-                ax.set_xlabel(f'Temperature (ºC)', fontsize=12)
+                ax.set_xlabel(f'Temperature (ºC)', fontsize=14)
             case "humidity":
-                ax.set_xlabel(f'Relative Humidity (%)', fontsize=12)
+                ax.set_xlabel(f'Relative Humidity (%)', fontsize=14)
             case "altitude":
-                ax.set_xlabel('Altitude (m)', fontsize=12)
+                ax.set_xlabel('Altitude (m)', fontsize=14)
             case "timestamp":
-                ax.set_xlabel('Time (s)', fontsize=12)
+                ax.set_xlabel('Time (s)', fontsize=14)
             case _:
                 ax.set_xlabel("")
         match y_axis:
             case "pressure":
-                ax.set_ylabel(f'Pressure (Pa)', fontsize=12)
+                ax.set_ylabel(f'Pressure (Pa)', fontsize=14)
             case "temperature":
-                ax.set_ylabel(f'Temperature (ºC)', fontsize=12)
+                ax.set_ylabel(f'Temperature (ºC)', fontsize=14)
             case "humidity":
-                ax.set_ylabel(f'Relative Humidity (%)', fontsize=12)
+                ax.set_ylabel(f'Relative Humidity (%)', fontsize=14)
             case "altitude":
-                ax.set_ylabel('Altitude (m)', fontsize=12)
+                ax.set_ylabel('Altitude (m)', fontsize=14)
             case _:
                 ax.set_ylabel("")
 
@@ -71,7 +71,9 @@ if len(sys.argv) >= 5:
         props = dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray')
         ax.text(0.05, 0.95, stats_text, transform=ax.transAxes, fontsize=11,
                 verticalalignment='top', bbox=props)
-
+        plt.rc('font', size=12)
+        plt.xticks(fontsize = 12)
+        plt.yticks(fontsize = 12)
         plt.grid(visible=True, color="#d8d7c4")
         ax.legend()
         plt.tight_layout()
@@ -83,35 +85,38 @@ else:
     plt.rcParams["font.family"] = "sans-serif"
     plt.rcParams["font.sans-serif"] = "Helvetica"
 
-    ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=14, fontweight='bold')
+    ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
     match x_axis:
         case "pressure":
-            ax.set_xlabel(f'Pressure (Pa)', fontsize=12)
+            ax.set_xlabel(f'Pressure (Pa)', fontsize=14)
         case "temperature":
-            ax.set_xlabel(f'Temperature (ºC)', fontsize=12)
+            ax.set_xlabel(f'Temperature (ºC)', fontsize=14)
         case "humidity":
-            ax.set_xlabel(f'Relative Humidity (%)', fontsize=12)
+            ax.set_xlabel(f'Relative Humidity (%)', fontsize=14)
         case "altitude":
-            ax.set_xlabel('Altitude (m)', fontsize=12)
+            ax.set_xlabel('Altitude (m)', fontsize=14)
         case "timestamp":
-            ax.set_xlabel('Time (s)', fontsize=12)
+            ax.set_xlabel('Time (s)', fontsize=14)
         case _:
             ax.set_xlabel("")
     match y_axis:
         case "pressure":
-            ax.set_ylabel(f'Pressure (Pa)', fontsize=12)
+            ax.set_ylabel(f'Pressure (Pa)', fontsize=14)
         case "temperature":
-            ax.set_ylabel(f'Temperature (ºC)', fontsize=12)
+            ax.set_ylabel(f'Temperature (ºC)', fontsize=14)
         case "humidity":
-            ax.set_ylabel(f'Relative Humidity (%)', fontsize=12)
+            ax.set_ylabel(f'Relative Humidity (%)', fontsize=14)
         case "altitude":
-            ax.set_ylabel('Altitude (m)', fontsize=12)
+            ax.set_ylabel('Altitude (m)', fontsize=14)
         case _:
             ax.set_ylabel("")
 
     ax.set_facecolor("#fffde9")
     fig.patch.set_facecolor("#fffde9")
 
+    plt.rc('font', size=12)
+    plt.xticks(fontsize = 12)
+    plt.yticks(fontsize = 12)
     plt.grid(visible=True, color="#d8d7c4")
     ax.legend()
     plt.tight_layout()
