@@ -29,6 +29,9 @@ if len(sys.argv) >= 3:
     })
     audio_df = audio_df.sort_values(by=time_col)
 
+    min_cansat_time = cansat_data[time_col].min()
+    audio_df = audio_df[audio_df[time_col] >= min_cansat_time]
+
     merged_df = pd.merge_asof(audio_df, cansat_data, on=time_col, direction='nearest')
 
 
@@ -98,7 +101,7 @@ else:
         peak_amp = spectrum[peak_idx]
 
         plt.style.use('ggplot') 
-        fig = plt.figure(figsize=(10, 6))
+        fig = plt.figure(figsize=(11, 8))
 
         plt.plot(f, spectrum, color='#231f20', linewidth=1.5, label='Frequency Spectrum')
 
@@ -106,20 +109,24 @@ else:
         ax = plt.gca()
         ax.set_facecolor("#fffde9")
         fig.patch.set_facecolor("#fffde9")
+        
+        plt.rc('font', size=12)
+        plt.xticks(fontsize = 12)
+        plt.yticks(fontsize = 12)
 
-        plt.title('CanSat Resonance Spectrum', fontsize=14, fontweight='bold')
-        plt.xlabel('Frequency (Hz)', fontsize=12)
-        plt.ylabel('Amplitude', fontsize=12)
-        plt.xlim(1000, 1300)
+        plt.title('CanSat Resonance Spectrum', fontsize=16, fontweight='bold')
+        plt.xlabel('Frequency (Hz)', fontsize=16)
+        plt.ylabel('Amplitude (a.u.)', fontsize=16)
+        plt.xlim(2550, 2670)
         plt.rcParams["font.family"] = "sans-serif"
         plt.rcParams["font.sans-serif"] = "Helvetica"
 
-        text_str = f"Calculated Speed:\n$v = {v:.2f} \\pm {delta_v:.2f}$ m/s"
-        plt.annotate(text_str, xy=(0.80, 0.80), xycoords='axes fraction',
+        text_str = f"$v = {v:.2f} \\pm {delta_v:.2f}$ m/s"
+        plt.annotate(text_str, xy=(0.75, 0.80), xycoords='axes fraction',
                     bbox=dict(boxstyle="round,pad=0.5", fc="white", ec="gray", alpha=0.9),
-                    fontsize=11)
+                    fontsize=14)
         plt.grid(visible=True, color="#d8d7c4")
-        plt.legend(loc="upper right")
+        plt.legend(loc="upper right", fontsize=15)
         plt.tight_layout()
 
         plt.show()
