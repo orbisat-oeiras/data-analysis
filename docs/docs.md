@@ -64,5 +64,5 @@ octave:1> analyze_data("series", L, "bootcount", "1", "cansat_data", "CANSAT_FIL
 get the resonance frequency of an audio file and display with Python:
 
 ```shell
-analyze_data("single", "fname", "AUDIO_FILE", "fig_py")
+octave:1> analyze_data("single", L, "fname", "AUDIO_FILE", "fig_py")
 ```
