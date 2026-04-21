@@ -5,6 +5,14 @@ import pandas as pd
 import sys
 import statsmodels.api as sm 
 
+def export_to_csv(merged_dataframe, variable):
+    filename = f"{variable}_vs_speed_of_sound.csv"
+
+    export_df = merged_dataframe[['timestamp', variable, 'speeds', 'delta_v']]
+
+    export_df.to_csv(filename, index=False)
+    print("Exported to", filename)
+
 mat_data = scipy.io.loadmat('python/data/cansat_export.mat')
 
 if len(sys.argv) >= 3:
@@ -38,6 +46,10 @@ if len(sys.argv) >= 3:
     v_synced = merged_df['speeds'].values
     delta_v_synced = merged_df['delta_v'].values
     x_raw = merged_df[analyzed_variable].values
+
+    if "csv" in sys.argv:
+        export_to_csv(merged_df, analyzed_variable)
+        print("Exporting data to csv...")
 
     X_model = sm.add_constant(x_raw)
 
@@ -154,3 +166,11 @@ else:
         plt.tight_layout()
 
         plt.show()
+
+def export_to_csv(merged_dataframe, variable):
+    filename = f"{variable}_vs_speed_of_sound.csv"
+
+    export_df = merged_dataframe[['timestamp', variable, 'speeds', 'delta_v']]
+
+    export_df.to_csv(filename, index=False)
+    print("Exported to", filename)

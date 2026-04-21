@@ -47,6 +47,8 @@ The main script file to be used is [analyze_data.m](https://github.com/orbisat-o
 
 - `fig_py` - display the figure using Python.
 
+- `csv` - exports the analysed data to a csv file
+
 ## Example Usage
 
 On the Octave shell, to analyze a series of audio files, with a tube of length L with bootcount 1, to graph the speed of sound in function of time with Python:
