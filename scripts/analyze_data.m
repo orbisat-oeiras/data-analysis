@@ -23,8 +23,16 @@ function [v delta_v] = analyze_data(varargin)
     p.addSwitch("disp");
     p.addSwitch("fig");
     p.addSwitch("fig_py");
+    p.addSwitch("csv");
 
     p.parse(varargin{:});
+    read_csv = "";
+
+    if p.Results.csv
+        read_csv = "csv";
+    endif
+
+    freq_csv = fopen("freq.csv");
 
     k = 2;
 
@@ -34,7 +42,7 @@ function [v delta_v] = analyze_data(varargin)
     if strcmp(p.Results.datatype, "single")
         filename = p.Results.fname;
         [signal, Fs, N] = signalread(filename);
-        [spectrum, f] = fftspectrum(signal, Fs, N, 0.01);
+        [spectrum, f] = fftspectrum(signal, Fs, N, 0.05);
 
         if strcmp(p.Results.method, "direct")
             [pk, idx] = max(spectrum);
@@ -69,7 +77,7 @@ function [v delta_v] = analyze_data(varargin)
             plot(f(idx), pk, 'ro');
             xlabel('Frequency (Hz)');
             ylabel('Amplitude');
-            xlim([1000, 1500]);
+            xlim([1000, 10000]);
             title('Single-Sided Amplitude Spectrum of Signal');
             legend('Spectrum', 'Peak');
             annotation("textbox", [.7 .71 .16 .06], ...
@@ -226,7 +234,9 @@ function [v delta_v] = analyze_data(varargin)
 
             save('-mat', 'python/data/cansat_export.mat', 'speeds', 'delta_v', 'timestamps');
             printf("Launching Python Visualizer...");
-            system(sprintf("python3 ./python/plot_cansat.py %s %s %s", p.Results.cansat_data, p.Results.variable, p.Results.regression_type));
+            system(sprintf("python3 ./python/plot_cansat.py %s %s %s %s", p.Results.cansat_data, p.Results.variable, p.Results.regression_type, read_csv));
+            disp(sprintf("python3 ./python/plot_cansat.py %s %s %s %s", p.Results.cansat_data, p.Results.variable, p.Results.regression_type, read_csv));
+
         endif
 
     endif
