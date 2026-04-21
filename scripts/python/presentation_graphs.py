@@ -23,19 +23,20 @@ if len(sys.argv) >= 5:
     if sys.argv[4] == "regression":
         if x_axis == "timestamp":
             x = x / 1e6
+            ax.set_title(f'{y_axis.capitalize()} vs. Time', fontsize=16, fontweight='bold')
+        else:
+            ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
         x_model = sm.add_constant(x)
         model = sm.OLS(y, x_model)
         results = model.fit()
         intercept = results.params[0]
         slope = results.params[1]
         r_squared = results.rsquared
-        print(f'{len(x)} {len(y)}')
         ax.plot(x, y, color='red')
 
         plt.rcParams["font.family"] = "sans-serif"
         plt.rcParams["font.sans-serif"] = "Helvetica"
 
-        ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
         match x_axis:
             case "pressure":
                 ax.set_xlabel(f'Pressure (Pa)', fontsize=14)
@@ -81,11 +82,13 @@ if len(sys.argv) >= 5:
 else:
     if x_axis == "timestamp":
         x = x / 1e6
+        ax.set_title(f'{y_axis.capitalize()} vs. Time', fontsize=16, fontweight='bold')
+    else:
+        ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
     ax.plot(x, y, color='red', linewidth=2)
     plt.rcParams["font.family"] = "sans-serif"
     plt.rcParams["font.sans-serif"] = "Helvetica"
 
-    ax.set_title(f'{y_axis.capitalize()} vs. {x_axis.capitalize()}', fontsize=16, fontweight='bold')
     match x_axis:
         case "pressure":
             ax.set_xlabel(f'Pressure (Pa)', fontsize=14)
